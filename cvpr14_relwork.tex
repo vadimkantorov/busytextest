@@ -1,0 +1,74 @@
+Recent methods show significant progress towards action
+recognition in realistic and challenging videos from YouTube,
+movies and
+TV~\cite{Laptev08,Laptev07,Liu11,Niebles10,Rodriguez08,Sadanand12,Wang12}.
+Among other approaches, bag-of-features (BOF)
+methods~\cite{Dollar05,Laptev05,Schuldt04} have gained
+popularity due to their simplicity, wide range of application
+and high recognition accuracy.
+BOF methods represent actions by collections of local space-time descriptors aggregated over the video.
+Several alternative local descriptors have been proposed
+including histograms of flow orientations (HOF)~\cite{Laptev08},
+histograms of 3D gradients
+(HOG3D)~\cite{klaser2008spatio,Scovanner07}, motion boundary
+histograms (MBH)~\cite{Dalal06,Wang12}, shapes of point
+trajectories~\cite{Matikainen09,Messing09,Wang12}, local trinary patterns~\cite{Kliper12,Yeffet09} and others. 
+Mid-level features such as action attributes~\cite{Liu11} and action
+bank~\cite{Sadanand12} have also been explored. Recent
+ evaluation~\cite{Wang12} demonstrates that MBH, HOF
+and HOG descriptors sampled along dense point trajectories
+outperform other
+methods on a number of challenging datasets~\cite{Wang12}. 
+More recent extensions demonstrate improvements using motion stabilization and person trajectories~\cite{Jain13,Wang13}.
+We follow~\cite{Wang12} and design a new motion-based local
+descriptor that drastically improves the speed of previous
+methods at the cost of minor decrease in the recognition
+accuracy.
+
+%sampling of feature   required for larger scale problems. Random sampling
+%of dense features locations~\cite{Feng13} has been studied as
+%well, it leads to feature extraction substantially faster than
+%\cite{Wang12}, but several times slower than this work. 
+
+
+Efficient action recognition has been addressed by several
+methods. The work~\cite{mpeg3,mpeg2,mpeg1} is particularly
+related to ours as it makes use of motion information from video compression for fast action recognition. This previous work,
+however, designs action-specific descriptors and, hence, its
+speed scales linearly with the number of action classes. In
+contrast, we design a generic action representation and evaluate its accuracy and efficiency on many action classes in
+challenging settings.
+Yeffet and Wolf~\cite{Yeffet09} extend the fast LBP image
+descriptor to a Local Trinary Pattern (LTP) descriptor in video
+and evaluate its accuracy on action recognition. While LTP was
+claimed to run in real time, no quantitative evaluation of its
+speed was reported in~\cite{Yeffet09}. Differently to LTP, we
+use flow-based MBH and HOF descriptors which have recently shown excellent results for action recognition~\cite{Wang12}. Yu
+et~al.~\cite{Yu10} have proposed another pixel-based local
+descriptor for efficient action recognition. We quantitatively
+compare our method with~\cite{Yu10} and show improvements in
+both the speed and accuracy.
+Closely related to our work, \cite{Feng13} has 
+recently improved the speed of local feature extraction in video
+by random feature sampling.
+We experimentally compare our method to~\cite{Feng13}
+and show one order of magnitude improvement in speed while 
+also demontrating improved accuracy.
+
+
+Alternative schemes for feature encoding
+%, i.e.~aggregation of local descriptors into global representations,
+have been recently evaluated for image classification
+in~\cite{Chatfield11}.
+%While histogram encoding is the most common one, 
+Fisher vector (FV) encoding~\cite{Perronnin10} has been shown to provide best accuracy using efficient linear kernels for
+classification. FV encoding has been successfully applied for
+event detection \cite{Revaud13} and we are confirming its
+improved performance and efficiency compared to the
+histogram encoding typically used in action recognition. We also investigate efficient computation of FV using approximate
+nearest neighbor methods for descriptor assignment. FV encoding enables high recognition accuracy using fast linear
+classifiers which is a big advantage for large-scale video
+recognition. \smallskip
+
+\noindent\textbf{Contributions.} The contributions of this work are the following. First, we design and thoroughly evaluate an efficient motion descriptor based on the video compression which is 100x faster to compute at a minor degradation of recognition performance compared to the state-of-the-art~\cite{Wang12}. Second, to the best of our knowledge, we are the first to evaluate both efficiency and classification performance of FV and VLAD for action recognition and find it improving the recognition rates without loss in speed compared to the histogram encoding.
+

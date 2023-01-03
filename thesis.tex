@@ -1,0 +1,211 @@
+%**************************************************
+% Document Class Definition
+% **************************************************
+\documentclass[%
+	paper=A4,				% paper size --> A4 is default in Germany
+	twoside=true,				% onesite or twoside printing
+	openright,				% doublepage cleaning ends up right side
+	parskip=full,				% spacing value / method for paragraphs
+	chapterprefix=true,			% prefix for chapter marks
+	11pt,					% font size
+	headings=normal,			% size of headings
+	bibliography=totoc,			% include bib in toc
+	listof=totoc,				% include listof entries in toc
+	titlepage=on,				% own page for each title page
+	captions=tableabove,			% display table captions above the float env
+	draft=false,				% value for draft version
+]{scrreprt}%
+%\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+
+\input{commands}
+
+% https://ctan.math.illinois.edu/macros/latex/contrib/cleanthesis/doc/cleanthesis-doc.pdf
+\usepackage[					% clean thesis style
+	figuresep=colon,%
+	sansserif=false,%
+	hangfigurecaption=false,%
+	hangsection=true,%
+	hangsubsection=true,%
+	colorize=full,%
+	colortheme=bluemagenta,%
+        bibsys=bibtex,%
+        configurebiblatex=false,%
+	bibfile=thesis,
+]{cleanthesis}
+
+%\usepackage[pagebackref=true,breaklinks=true,letterpaper=true,colorlinks,urlcolor=blue,bookmarks=false]{hyperref}
+
+\hypersetup{				% setup the hyperref-package options
+	pdftitle={\thesisTitle},	% 	- title (PDF meta)
+	pdfsubject={\thesisSubject},	% 	- subject (PDF meta)
+	pdfauthor={\thesisName},	% 	- author (PDF meta)
+	plainpages=false,		% 	- 
+	colorlinks=false,		% 	- colorize links?
+	pdfborder={0 0 0},		% 	-
+	breaklinks=true,		% 	- allow line break inside links
+	bookmarksnumbered=true,		%
+	bookmarksopen=true		%
+}
+
+\usepackage{pdfpages}
+\usepackage{calc}
+\usepackage{xcolor}
+\usepackage{mdframed}
+\usepackage{times}
+\usepackage{epsfig}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{color}
+\usepackage{marvosym}
+\usepackage{adjustbox}
+\usepackage{cite}
+
+\title{Topics in Computer Vision: efficient video features and weakly-supervised object detection}
+\author{Vadim Kantorov}
+\date{2023}
+
+\begin{document}
+\selectlanguage{english}
+
+% --------------------------
+% Front matter
+% --------------------------
+\pagenumbering{roman}			% roman page numbing (invisible for empty page style)
+\pagestyle{empty}				% no header or footers
+
+
+\begin{titlepage}
+\includepdf{front.pdf}
+%\cleardoublepage % pour laisser une page blanche au verso de la page de garde
+\newpage
+\vspace*{\fill}
+\noindent\begin{center}
+\begin{minipage}[t]{(\textwidth-2cm)/3+1cm}
+École normale supérieure \\
+45 rue d'Ulm \\
+75005 Paris
+\end{minipage}
+%
+\hfill
+%
+\begin{minipage}[t]{(\textwidth-2cm)/3-1cm}
+Inria Paris \\
+2 rue Simone Iff \\
+75012 Paris
+\end{minipage}
+%
+\hfill
+%
+\begin{minipage}[t]{5.5cm}
+UPMC\\
+Ecole Doctorale de Sciences\\
+Math\'ematiques de Paris Centre\\
+4 place Jussieu\\
+75252 Paris Cedex 05\\
+Boite courrier 290
+\end{minipage}
+\end{center}
+\end{titlepage}
+%\maketitle
+\cleardoublepage
+
+
+
+\pagestyle{plain}				% display just page numbers
+\pdfbookmark[0]{Abstract}{Abstract}
+\chapter*{Abstract}
+\label{sec:abstract}
+\vspace*{-10mm}
+\input{absen}
+\newpage
+{\usekomafont{chapter}Résumé}\label{sec:abstract-fr} \\
+\input{absfr}
+\cleardoublepage
+
+
+
+\pdfbookmark[0]{Acknowledgement}{Acknowledgement}
+\chapter*{Acknowledgement}
+\label{sec:acknowledgement}
+\vspace*{-10mm}
+\input{ack}
+\cleardoublepage
+
+\setcounter{tocdepth}{1}
+\tableofcontents
+\cleardoublepage
+
+% --------------------------
+% Body matter
+% --------------------------
+\pagenumbering{arabic}			% arabic page numbering
+\setcounter{page}{1}			% set page counter
+\pagestyle{maincontentstyle} 		% fancy header and footer
+
+
+\chapter{Introduction}
+\input{intro}
+
+
+\chapter{Related work}
+\input{relwork}
+
+
+\chapter{Efficient feature extraction, aggregation and classification for action recognition}
+\section{Introduction}
+\begin{abstract}\input{cvpr14_abs}\end{abstract}
+\input{cvpr14_intro}
+\section{Related work}\label{sec:relatedwork}
+\input{cvpr14_relwork}
+\input{cvpr14_desc}
+\input{cvpr14_feat}
+\section{Experimental evaluation}\label{sec:experiments}
+\input{cvpr14_experiments}
+\section{Conclusions}
+\input{cvpr14_conclusions}
+
+
+\chapter{Context-aware deep network models for weakly supervised localization}
+\section{Introduction}
+\begin{abstract}\input{eccv16_abs}\end{abstract}
+\input{eccv16_intro}
+\section{Related work}
+\input{eccv16_relwork}
+\input{eccv16_model}
+\section{Experimental evaluation}
+\input{eccv16_experiments}
+\section{Conclusions}
+\input{eccv16_conclusions}
+
+
+\chapter{Conclusions}
+\input{conclusions}
+
+% --------------------------
+% Back matter
+% --------------------------
+
+\cleardoublepage
+\bibliographystyle{ieeetr}
+\bibliography{shortstrings,thesis,cvpr14,eccv16}
+%\printbibliography
+\cleardoublepage
+
+\listoffigures
+\cleardoublepage
+
+\listoftables
+\cleardoublepage
+
+\newpage
+\includepdf{back.pdf}
+
+\end{document}

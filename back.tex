@@ -1,0 +1,69 @@
+\documentclass[%
+	paper=A4,					% paper size --> A4 is default in Germany
+	twoside=true,				% onesite or twoside printing
+	openright,					% doublepage cleaning ends up right side
+	chapterprefix=true,			% prefix for chapter marks
+	11pt,						% font size
+	headings=normal,			% size of headings
+	bibliography=totoc,			% include bib in toc
+	listof=totoc,				% include listof entries in toc
+	titlepage=on,				% own page for each title page
+	captions=tableabove,		% display table captions above the float env
+	draft=false,				% value for draft version
+]{scrreprt}%
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\definecolor{pslblue}{rgb}{0.2431,0.2157,0.5216}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}		% defines file's character encoding
+%\usepackage{textcomp}
+\usepackage[english]{babel} % babel system, adjust the language of the content
+\usepackage[					% clean thesis style
+	figuresep=colon,%
+	sansserif=false,%
+	hangfigurecaption=false,%
+	hangsection=true,%
+	hangsubsection=true,%
+	colorize=full,%
+	colortheme=bluemagenta,%
+        bibsys=bibtex,%
+        configurebiblatex=false,%
+	bibfile=thesis,
+]{cleanthesis}
+
+\setlength{\parindent}{0em}			% value for paragraph indentation
+%\usepackage{tgheros}	% FIXME: breaks busytex Font:	TEX Gyre Heros
+\usepackage{setspace}
+\usepackage{wallpaper}
+\usepackage[absolute,overlay]{textpos}
+\setlength{\TPHorizModule}{\paperwidth}\setlength{\TPVertModule}{\paperheight}
+
+\input{commands}
+
+\begin{document}
+\pagestyle{empty}				% no header or footers
+\ThisLRCornerWallPaper{1}{figures/thesis_back.pdf}
+\begin{textblock}{0.33}(0.163,0.166)
+\setstretch{1.11} \sffamily \color{pslblue} \Large Résumé\vspace{2.1mm}\\
+\scriptsize
+\input{absfrshort}
+\vspace{3.1mm}\\
+\Large Mots Clés\vspace{2.1mm}\\
+\scriptsize vision par ordinateur, films 3D, détection de personne, estimation de pose, segmentation vidéo, segmentation multi-instance
+\end{textblock}
+
+\begin{textblock}{0.33}(0.51,0.166)
+\setstretch{1.11} \sffamily \color{pslblue} \Large Abstract\vspace{2.1mm}\\
+\scriptsize
+\input{absenshort}
+\vspace{28.8mm}\\
+\Large Keywords\vspace{2.1mm}\\
+\scriptsize computer vision, 3D movies, person detection, pose estimation, video segmentation, instance-level segmentation
+\end{textblock}
+
+\begin{textblock}{0.20}(0.645,0.935)
+\setstretch{0.98} \sffamily \color{pslblue} \footnotesize Numéro national de thèse:\\
+xxxxx
+\end{textblock}
+\end{document}

@@ -1,0 +1,62 @@
+The amount of video has increased dramatically over recent years and continues to grow. Striking indications of this development
+include 6000 years of video uploaded to YouTube
+yearly\footnote{\scriptsize
+\url{http://youtube.com/t/press\_statistics}} and millions of
+surveillance cameras installed only in the UK. According to
+Cisco\footnote{\scriptsize
+\url{http://newsroom.cisco.com/dlls/2010/prod_060210.html}},
+video is expected to dominate Internet traffic by 91\% in 2014.
+%, or a webcam network installed for public monitoring of Russian elections that has generated over 100 years of video just in one day\footnote{http://www.rostelecom.ru/en/ir/news/d212878}.
+
+The access to information in such gigantic quantities of video
+data requires accurate and efficient methods for automatic video analysis. Much work has been recently devoted to automatic video understanding and recognition of human actions in
+particular~\cite{Laptev08,Liu11,Niebles10,Sadanand12,Schuldt04,Wang12}.
+While the recognition accuracy has been continuously improved,
+current methods remain limited to relatively small datasets due
+to the low speed of video processing, often ranging in the order of 1-2 frames per second. This stands in a sharp contrast with
+the needs of large-scale video indexing and retrieval in modern
+video archives. Fast video recognition is also required by
+client applications, e.g., for automatic on-the-fly video
+moderation and video editing. Efficient video representations
+enabling fast event recognition will also foster solutions to
+new problems such as automatic clustering of very large video
+collections.
+
+The main goal of this work is efficient action recognition. We
+follow the common bag-of-features action recognition
+pipeline~\cite{Laptev08,Schuldt04,Wang12} and explore the speed
+and memory trade-offs of its main steps, namely, feature
+extraction, feature encoding and classification. Given their
+success for action recognition, we represent video
+using motion-based HOF~\cite{Laptev08} and MBH~\cite{Wang12}
+local descriptors. Motion estimation at dense grid, however, is
+a time-consuming process that
+limits the speed of feature extraction.
+In this work we avoid motion estimation and design
+fast
+descriptors using motion information from video compression.
+In contrast to the dense optical flow (OF), video compression
+provides sparse motion vectors only (we call it MPEG~flow).
+As one contribution of this paper, we show that the use of
+sparse MPEG flow instead of the dense OF improves the speed of
+feature extraction by {\em two orders of magnitude} and implies
+only minor reduction in classification performance.
+
+Feature encoding typically involves assignment of local
+descriptors to one or several nearest elements in a visual
+vocabulary. Given the large number of video descriptors, the
+speed of this step is a major bottleneck. We evaluate using
+kd-forest approximate nearest neighbor search \cite{Philbin07}
+and analyze the associated trade-off between the speed and
+recognition accuracy. We next investigate Fisher vector (FV)
+encoding~\cite{Perronnin12} and show improved action recognition while using fast linear classifiers.
+We evaluate the speed and accuracy of our approach on
+\mbox{Hollywood-2}~\cite{Marszalek09}, UCF50~\cite{Reddy12},
+HMDB51~\cite{Kuehne11} and UT-Interaction~\cite{Ryoo10}
+benchmarks. The implementation of out method is available at~\cite{projectpage}.
+
+The rest of the paper is organized as follows. 
+After reviewing related work in Section~\ref{sec:relatedwork} we address efficient extraction of local video features in
+Section~\ref{sec:features}. Section~\ref{sec:quantization}
+describes our fast video encoding.
+Section~\ref{sec:experiments} presents experimental results.

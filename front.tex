@@ -1,0 +1,112 @@
+\documentclass[%
+	paper=A4,					% paper size --> A4 is default in Germany
+	twoside=true,				% onesite or twoside printing
+	openright,					% doublepage cleaning ends up right side
+	parskip=full,				% spacing value / method for paragraphs
+	chapterprefix=true,			% prefix for chapter marks
+	11pt,						% font size
+	headings=normal,			% size of headings
+	bibliography=totoc,			% include bib in toc
+	listof=totoc,				% include listof entries in toc
+	titlepage=on,				% own page for each title page
+	captions=tableabove,		% display table captions above the float env
+	draft=false,				% value for draft version
+]{scrreprt}%
+
+\usepackage[usenames,dvipsnames,svgnames,table]{xcolor}
+\definecolor{pslblue}{rgb}{0.2431,0.2157,0.5216}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}		% defines file's character encoding
+%\usepackage{textcomp}
+\usepackage[english]{babel} % babel system, adjust the language of the content
+\usepackage[					% clean thesis style
+	figuresep=colon,%
+	sansserif=false,%
+	hangfigurecaption=false,%
+	hangsection=true,%
+	hangsubsection=true,%
+	colorize=full,%
+	colortheme=bluemagenta,%
+        bibsys=bibtex,%
+        configurebiblatex=false,%
+	bibfile=thesis,
+]{cleanthesis}
+
+\setlength{\parindent}{0em}			% value for paragraph indentation
+%\usepackage{tgheros}	% FIXME: breaks busytex Font:	TEX Gyre Heros
+\usepackage{setspace}
+\usepackage{gensymb}
+\usepackage{wallpaper}
+\usepackage[absolute,overlay]{textpos}
+\setlength{\TPHorizModule}{\paperwidth}\setlength{\TPVertModule}{\paperheight}
+
+\input{commands}
+
+\begin{document}
+\pagestyle{empty}				% no header or footers
+\ThisLRCornerWallPaper{1}{figures/thesis_front.pdf}
+\begin{titlepage}
+\begin{textblock}{0.5}(0.25,0.025)
+\setstretch{0.98} \sffamily \color{pslblue} \LARGE THÈSE DE DOCTORAT\\
+de l'Université de recherche\\
+Paris Sciences Lettres --\\
+PSL Research University
+\vspace*{6mm}\\
+préparée à\\
+l'École normale supérieure
+\end{textblock}
+
+\begin{textblock}{0.30}(0.25,0.285)
+\setstretch{0.98} \sffamily \color{white} \LARGE Topics in Computer Vision \\
+\\
+\large \noindent \emph{\thesisTitle}
+\end{textblock}
+
+\begin{textblock}{0.35}(0.25,0.432)
+\setstretch{0.98} \sffamily \color{white} \LARGE par Vadim Kantorov
+\end{textblock}
+
+\begin{textblock}{0.30}(0.66,0.282)
+\setstretch{0.98} \sffamily \color{white} \LARGE École doctorale n\degree{}386 \\
+Spécialité: Informatique \\
+Soutenue le XX.XX.2023
+\end{textblock}
+
+\begin{textblock}{0.30}(0.66,0.422)
+\setstretch{1.1} \sffamily \color{white} \small Composition du Jury :\\
+\\
+M Xxxxx Xxxxx \\
+University of Xxxxxxxx \\
+Rapporteur \\
+\\
+M Xxxxxxxx Xxxxxxxxxxxx \\
+Xxxx University \\
+Rapporteur \\
+\\
+M Ivan Laptev \\
+Inria \\
+Directeur de thèse \\
+\\
+M Xxxxx Xxxxx \\
+Xxxxx \\
+Xxxxxxxxx xx xxxxx \\
+\\
+M Xxxxxxx Xxxxxxx \\
+Xxxxx \\
+Membre du Jury \\
+\\
+M Xxxxxxx Xxxxx \\
+Xxxxxxxxxxx \\
+Membre du Jury \\
+\\
+M Jean Ponce \\
+École normale supérieure \\
+Membre du Jury \\
+\\
+M Xxxxxxx Xxxx \\
+Xxxxx xxxxxxx xxxxxxxxxx \\
+Membre du Jury \\
+\end{textblock}
+\end{titlepage}
+\end{document}
